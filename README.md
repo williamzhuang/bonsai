@@ -1,28 +1,26 @@
 # bonsai
-Open Source Skill Tree Application for Android
 
-The SkillTree Application is an application that helps users keep track of their progress in developing skills in any area. Users generate skill trees and vote on their favorite trees. Leaderboards can show progress and competition among friends. Additionally, the trees would be separated into categories such as fitness, knowledge, or practical skills and the like. 
+bonsai is an Android application that helps users keep track of their progress in developing skills in any area. 
+Users generate skill trees and vote on their favorite trees. Leaderboards can show progress and competition among friends. 
+Additionally, the trees would be separated into categories such as fitness, knowledge, or practical skills and the like. 
 
-The front page would be a dashboard showing your trees, progress statistics, etc.
 # Dashboard
-Recent progress
-Streak in learning new skills
-Balance triangle
-Total number of skills mastered
-My skills
-Show a personalized tree
-Fill circles based on how much of it was mastered
+1. Recent progress
+2. Streak in learning new skills
+3. Hexagon 
+4. Number of skills mastered
+5. My Skills
+  i. Show a personalized tree
+  ii. Fill circles based on percentage of mastery
+  
+# Finding new trees/things to learn
+1. Search bar for skills
+2. Browse categories
 
-# Finding New Trees/Things to learn
-Search bar for skills
-Searches database and lists in order of popularity
-Browse categories
+# Tree Generation
+1. Get a skill tree and modify it (i.e. fork it)
+2. Click a leaf -> Detail menu opens along with options to add a new leaf
+3. Leaf features
+  i. Add youtube links
+  ii. Make a checklist of things to do to master the skill.
 
-# Tree Generator
-Get a skill tree and modify it (complicates voting)
-Name a skill that you want to be learned
-Click a leaf => Detail menu opens along with option to add a new leaf for a skill that one can learn after the current one is mastered
-Make the entire tree
-Leaf features
-Add links to youtube videos for skills within each tree.
-Make a checklist for what it takes to master a skill
