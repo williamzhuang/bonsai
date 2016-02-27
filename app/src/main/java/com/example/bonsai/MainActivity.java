@@ -9,15 +9,16 @@ import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.google.common.util.concurrent.FutureCallback;
@@ -30,10 +31,7 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.microsoft.windowsazure.mobileservices.table.query.Query;
-import com.microsoft.windowsazure.mobileservices.table.query.QueryOperations;
 import com.microsoft.windowsazure.mobileservices.table.sync.MobileServiceSyncContext;
-import com.microsoft.windowsazure.mobileservices.table.sync.MobileServiceSyncTable;
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.ColumnDataType;
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.MobileServiceLocalStoreException;
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.SQLiteLocalStore;
@@ -43,7 +41,7 @@ import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperati
 
 public class MainActivity extends Activity {
 
-    Button addNodeButton;
+    Button btnViewCats;
 
     /**
      * Mobile Service Client reference
@@ -53,18 +51,18 @@ public class MainActivity extends Activity {
     /**
      * Mobile Service Table used to access data
      */
-    private MobileServiceTable<ToDoItem> mToDoTable;
+    private MobileServiceTable<SkillNode> mToDoTable;
 
     //Offline Sync
     /**
      * Mobile Service Table used to access and Sync data
      */
-    //private MobileServiceSyncTable<ToDoItem> mToDoTable;
+    //private MobileServiceSyncTable<SkillNode> mToDoTable;
 
     /**
      * Adapter to sync the items list with the view
      */
-    private ToDoItemAdapter mAdapter;
+    private SkillNodeAdapter mAdapter;
 
     /**
      * EditText containing the "New To Do" text
@@ -84,7 +82,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnViewCats = (Button) findViewById(R.id.button);
 
+        createListeners();
         try {
             // Create the Mobile Service Client instance, using the provided
 
@@ -96,16 +96,17 @@ public class MainActivity extends Activity {
 
             // Get the Mobile Service Table instance to use
 
-            mToDoTable = mClient.getTable(ToDoItem.class);
+            mToDoTable = mClient.getTable(SkillNode.class);
 
             // Offline Sync
-            //mToDoTable = mClient.getSyncTable("ToDoItem", ToDoItem.class);
+            //mToDoTable = mClient.getSyncTable("SkillNode", SkillNode.class);
 
             //Init local storage
             initLocalStore().get();
 
+
             // Create an adapter to bind the items with the view
-            mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
+            mAdapter = new SkillNodeAdapter(this, R.layout.row_list_to_do);
 
             // Load the items from the Mobile Service
             refreshItemsFromTable();
@@ -115,6 +116,21 @@ public class MainActivity extends Activity {
         } catch (Exception e){
             createAndShowDialog(e, "Error");
         }
+    }
+
+    private void createListeners() {
+
+        btnViewCats.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                startViewCategories();
+            }
+        });
+    }
+
+    public void startViewCategories() {
+
+        Intent intent = new Intent(this, CategoriesActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -144,7 +160,7 @@ public class MainActivity extends Activity {
      * @param item
      *            The item to mark
      */
-    public void checkItem(final ToDoItem item) {
+    public void checkItem(final SkillNode item) {
         if (mClient == null) {
             return;
         }
@@ -184,7 +200,7 @@ public class MainActivity extends Activity {
      * @param item
      *            The item to mark
      */
-    public void checkItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
+    public void checkItemInTable(SkillNode item) throws ExecutionException, InterruptedException {
         mToDoTable.update(item).get();
     }
 
@@ -200,7 +216,7 @@ public class MainActivity extends Activity {
         }
 
         // Create a new item
-        final ToDoItem item = new ToDoItem();
+        final SkillNode item = new SkillNode();
 
         item.setText(mTextNewToDo.getText().toString());
         item.setComplete(false);
@@ -210,7 +226,7 @@ public class MainActivity extends Activity {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    final ToDoItem entity = addItemInTable(item);
+                    final SkillNode entity = addItemInTable(item);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -238,8 +254,8 @@ public class MainActivity extends Activity {
      * @param item
      *            The item to Add
      */
-    public ToDoItem addItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
-        ToDoItem entity = mToDoTable.insert(item).get();
+    public SkillNode addItemInTable(SkillNode item) throws ExecutionException, InterruptedException {
+        SkillNode entity = mToDoTable.insert(item).get();
         return entity;
     }
 
@@ -256,17 +272,17 @@ public class MainActivity extends Activity {
             protected Void doInBackground(Void... params) {
 
                 try {
-                    final List<ToDoItem> results = refreshItemsFromMobileServiceTable();
+                    final List<SkillNode> results = refreshItemsFromMobileServiceTable();
 
                     //Offline Sync
-                    //final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
+                    //final List<SkillNode> results = refreshItemsFromMobileServiceTableSyncTable();
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             mAdapter.clear();
 
-                            for (ToDoItem item : results) {
+                            for (SkillNode item : results) {
                                 mAdapter.add(item);
                             }
                         }
@@ -286,7 +302,7 @@ public class MainActivity extends Activity {
      * Refresh the list with the items in the Mobile Service Table
      */
 
-    private List<ToDoItem> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
+    private List<SkillNode> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
         return mToDoTable.where().field("complete").
                 eq(val(false)).execute().get();
     }
@@ -295,7 +311,7 @@ public class MainActivity extends Activity {
     /**
      * Refresh the list with the items in the Mobile Service Sync Table
      */
-    /*private List<ToDoItem> refreshItemsFromMobileServiceTableSyncTable() throws ExecutionException, InterruptedException {
+    /*private List<SkillNode> refreshItemsFromMobileServiceTableSyncTable() throws ExecutionException, InterruptedException {
         //sync the data
         sync().get();
         Query query = QueryOperations.field("complete").
@@ -329,7 +345,7 @@ public class MainActivity extends Activity {
                     tableDefinition.put("text", ColumnDataType.String);
                     tableDefinition.put("complete", ColumnDataType.Boolean);
 
-                    localStore.defineTable("ToDoItem", tableDefinition);
+                    localStore.defineTable("SkillNode", tableDefinition);
 
                     SimpleSyncHandler handler = new SimpleSyncHandler();
 

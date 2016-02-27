@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\William\Desktop\bonsai\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-3531986c9ba58916076a89343fe32d95b7c81df7.jar" />
+    </item>
+    <item
+        jar="C:\Users\William\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\18.0\cce0823396aa693798f8882e64213b1772032b09\guava-18.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\guava-18.0-0e2fa31cd7a667342996f8128502a5c17ac9bd93.jar" />
+    </item>
+    <item
+        jar="C:\Users\William\.gradle\caches\modules-2\files-2.1\com.microsoft.azure\azure-mobile-services-android-sdk\2.0.3\5de03bab93697321e5654831bb98df11ad4c19ac\azure-mobile-services-android-sdk-2.0.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="5de03bab93697321e5654831bb98df11ad4c19ac">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\azure-mobile-services-android-sdk-2.0.3-b238b4688f91e1e0cef924f4716167052d7158be.jar" />
+    </item>
+    <item
+        jar="C:\Users\William\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3\5fc52c41ef0239d1093a1eb7c3697036183677ce\gson-2.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\gson-2.3-ad57ae41dff5dc5ccb27d5ff2bb959109c4a367b.jar" />
+    </item>
+    <item
+        jar="C:\Users\William\.gradle\caches\modules-2\files-2.1\com.microsoft.azure\azure-notifications-handler\1.0.1\c322af100020e6db539f2aa367698d4b88fc453f\azure-notifications-handler-1.0.1.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="c322af100020e6db539f2aa367698d4b88fc453f">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\azure-notifications-handler-1.0.1-5c71702a5d7f4729dac73ea96a21fae250e8bae0.jar" />
+    </item>
+    <item
+        jar="C:\Users\William\Desktop\bonsai\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\classes-6f86ee993f506fa3e2720bc0d3e398c83924f658.jar" />
+    </item>
+    <item
+        jar="C:\Users\William\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\William\Desktop\bonsai\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-c00e2fb06701375e8c8036dee17e80b912ce1224.jar" />
+    </item>
+
+</items>
